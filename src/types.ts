@@ -116,6 +116,9 @@ export type Command =
       type: 'returnHtml'
     }
   | {
+      type: 'returnBody'
+    }
+  | {
       type: 'returnHtmlUrl'
     }
   | {

@@ -89,6 +89,8 @@ export default class LocalRuntime {
         return this.returnHtmlUrl()
       case 'returnPdf':
         return this.returnPdf(command.options)
+      case 'returnBody':
+        return this.returnBody()
       case 'returnInputValue':
         return this.returnInputValue(command.selector)
       case 'type':
@@ -446,6 +448,21 @@ export default class LocalRuntime {
       return await uploadToS3(data, 'application/pdf')
     } else {
       return writeToFile(data, 'pdf', filePath)
+    }
+  }
+
+  // Returns the S3 url or local file path
+  async returnBody(): Promise<string> {
+    const filePath = undefined
+    const data = await evaluate(
+      this.client,
+      '() => {return document.body.innerHTML.length;}',
+    )
+
+    if (isS3Configured()) {
+      return await uploadToS3(data, 'text/html')
+    } else {
+      return writeToFile(data, 'html', filePath)
     }
   }
 
