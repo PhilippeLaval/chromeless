@@ -460,9 +460,9 @@ export default class LocalRuntime {
     )
 
     if (isS3Configured()) {
-      return await uploadToS3(data, 'text/html')
+      return await uploadToS3('data', 'text/html')
     } else {
-      return writeToFile(data, 'html', filePath)
+      return writeToFile('data', 'html', filePath)
     }
   }
 

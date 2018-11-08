@@ -1,0 +1,42 @@
+import { Client, Command, ChromelessOptions, Headers, Cookie, CookieQuery, PdfOptions, ScreenshotOptions } from '../types';
+export default class LocalRuntime {
+    private client;
+    private chromelessOptions;
+    private userAgentValue;
+    constructor(client: Client, chromelessOptions: ChromelessOptions);
+    run(command: Command): Promise<any>;
+    private goto;
+    private clearCache;
+    private clearStorage;
+    private setUserAgent;
+    private waitTimeout;
+    private waitSelector;
+    private click;
+    private returnCode;
+    private scrollTo;
+    private scrollToElement;
+    private mousedown;
+    private mouseup;
+    private setHtml;
+    private focus;
+    type(text: string, selector?: string): Promise<void>;
+    cookies(nameOrQuery?: string | CookieQuery): Promise<Cookie[]>;
+    allCookies(): Promise<Cookie[]>;
+    setExtraHTTPHeaders(headers: Headers): Promise<void>;
+    setCookies(nameOrCookies: string | Cookie | Cookie[], value?: string): Promise<void>;
+    deleteCookies(name: string, url: string): Promise<void>;
+    clearCookies(): Promise<void>;
+    press(keyCode: number, count?: number, modifiers?: any): Promise<void>;
+    returnExists(selector: string): Promise<boolean>;
+    returnInputValue(selector: string): Promise<string>;
+    returnScreenshot(selector?: string, options?: ScreenshotOptions): Promise<string>;
+    returnHtml(): Promise<string>;
+    returnHtmlUrl(options?: {
+        filePath?: string;
+    }): Promise<string>;
+    returnPdf(options?: PdfOptions): Promise<string>;
+    returnBody(): Promise<string>;
+    clearInput(selector: string): Promise<void>;
+    setFileInput(selector: string, files: string[]): Promise<void>;
+    private log;
+}

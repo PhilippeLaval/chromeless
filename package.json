@@ -25,7 +25,6 @@
     "clean": "rimraf dist",
     "coverage": "npm run ava",
     "precommit": "lint-staged",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "prettier": "prettier --list-different --write \"**/*.{ts,json}\"",
     "test": "npm run lint && npm run ava",
     "lint": "npm run prettier && npm run tslint",
