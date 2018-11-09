@@ -426,7 +426,18 @@ export default class LocalRuntime {
   }
 
   async returnHtml(): Promise<string> {
-    return await html(this.client)
+    const filePath = undefined
+    const data = await evaluate(
+      this.client,
+      '() => {return document.body.innerHTML;}',
+    )
+
+
+    if (isS3Configured()) {
+      return await uploadToS3(JSON.stringify(data), 'text/html')
+    } else {
+      return writeToFile(JSON.stringify(data), 'html', filePath)
+    }
   }
 
   async returnHtmlUrl(options?: { filePath?: string }): Promise<string> {
