@@ -456,13 +456,14 @@ export default class LocalRuntime {
     const filePath = undefined
     const data = await evaluate(
       this.client,
-      '() => {return document.body.innerHTML.length;}',
+      '() => {return document.body.innerHTML;}',
     )
 
+
     if (isS3Configured()) {
-      return await uploadToS3('data', 'text/html')
+      return await uploadToS3(JSON.stringify(data), 'text/html')
     } else {
-      return writeToFile('data', 'html', filePath)
+      return writeToFile(JSON.stringify(data), 'html', filePath)
     }
   }
 
