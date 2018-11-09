@@ -630,10 +630,18 @@ var LocalRuntime = /** @class */ (function () {
     };
     LocalRuntime.prototype.returnHtml = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var filePath, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, util_1.html(this.client)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        filePath = undefined;
+                        return [4 /*yield*/, util_1.evaluate(this.client, '() => {return document.body.innerHTML;}')];
+                    case 1:
+                        data = _a.sent();
+                        if (!util_1.isS3Configured()) return [3 /*break*/, 3];
+                        return [4 /*yield*/, util_1.uploadToS3(JSON.stringify(data), 'text/html')];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3: return [2 /*return*/, util_1.writeToFile(JSON.stringify(data), 'html', filePath)];
                 }
             });
         });
