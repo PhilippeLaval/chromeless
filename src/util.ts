@@ -637,7 +637,11 @@ export function writeToFile(
 ): string {
   const filePath =
     filePathOverride || path.join(os.tmpdir(), `${cuid()}.${extension}`)
-  fs.writeFileSync(filePath, Buffer.from(data, 'base64'))
+  if (extension === 'html') {
+    fs.writeFileSync(filePath, data)        
+  } else {
+    fs.writeFileSync(filePath, Buffer.from(data, 'base64'))
+  }
   return filePath
 }
 
