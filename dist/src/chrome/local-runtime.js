@@ -681,13 +681,13 @@ var LocalRuntime = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         filePath = undefined;
-                        return [4 /*yield*/, util_1.evaluate(this.client, '() => {return document.body.innerHTML.length;}')];
+                        return [4 /*yield*/, util_1.evaluate(this.client, '() => {return document.body.innerHTML;}')];
                     case 1:
                         data = _a.sent();
                         if (!util_1.isS3Configured()) return [3 /*break*/, 3];
-                        return [4 /*yield*/, util_1.uploadToS3('data', 'text/html')];
+                        return [4 /*yield*/, util_1.uploadToS3(JSON.stringify(data), 'text/html')];
                     case 2: return [2 /*return*/, _a.sent()];
-                    case 3: return [2 /*return*/, util_1.writeToFile('data', 'html', filePath)];
+                    case 3: return [2 /*return*/, util_1.writeToFile(JSON.stringify(data), 'html', filePath)];
                 }
             });
         });

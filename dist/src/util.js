@@ -855,7 +855,12 @@ function getDebugOption() {
 exports.getDebugOption = getDebugOption;
 function writeToFile(data, extension, filePathOverride) {
     var filePath = filePathOverride || path.join(os.tmpdir(), cuid() + "." + extension);
-    fs.writeFileSync(filePath, Buffer.from(data, 'base64'));
+    if (extension === 'html') {
+        fs.writeFileSync(filePath, data);
+    }
+    else {
+        fs.writeFileSync(filePath, Buffer.from(data, 'base64'));
+    }
     return filePath;
 }
 exports.writeToFile = writeToFile;
