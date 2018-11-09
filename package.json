@@ -36,7 +36,7 @@
   "dependencies": {
     "aws-sdk": "^2.177.0",
     "bluebird": "^3.5.1",
-    "chrome-launcher": "^0.10.0",
+    "chrome-launcher": "^0.10.5",
     "chrome-remote-interface": "^0.25.5",
     "cuid": "^2.1.0",
     "form-data": "^2.3.1",
